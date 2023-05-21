@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Layout from './components/Layout';
+import Cards from './components/Cards';
+import CardsDetail from './components/CardsDetail';
+import store from './store';
+import { Provider } from 'react-redux';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ return (
+  <Provider store={store}>
+    <Routes>
+      <Route path="/" element={<Layout />} >
+        <Route index element={<Cards />} />
+        <Route path="/cart/:id" element={<CardsDetail />} />
+      </Route>
+    </Routes>
+  </Provider>
+ );
 }
 
 export default App;
